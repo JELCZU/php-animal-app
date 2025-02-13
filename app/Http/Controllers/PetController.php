@@ -16,8 +16,9 @@ class PetController extends Controller
     function showPets(Request $request)
     {
         $status = $request->query('status');
-        $pets = (new Pet)->getPetsByStatus($status);
-
+        
+        $pets = (new Pet)->getPetsByStatus($status ?? "available");
+        
         return view('pages.pets', ['title' => 'Pets', 'pets' => $pets]);
     }
     function showPet(Request $request)
